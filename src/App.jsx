@@ -15,6 +15,14 @@ export default function App() {
     const projectsRef = useRef(null);
     const resumeRef = useRef(null);
 
+    // sections 数组统一定义，确保 onScroll 可用
+    const sections = [
+        { id: "welcome", label: "Welcome", icon: <Home size={20} />, ref: welcomeRef },
+        { id: "about", label: "About", icon: <User size={20} />, ref: aboutRef },
+        { id: "projects", label: "Projects", icon: <Folder size={20} />, ref: projectsRef },
+        { id: "resume", label: "Resume", icon: <FileText size={20} />, ref: resumeRef },
+    ];
+
     // 禁止滚动 useEffect
     useEffect(() => {
         if (expandedProject !== null) {
@@ -30,13 +38,6 @@ export default function App() {
     // 监听滚动切换当前section
     useEffect(() => {
         function onScroll() {
-            const sections = [
-                { id: "welcome", label: "Welcome", icon: <Home size={20} /> },
-                { id: "about", label: "About", icon: <User size={20} /> },
-                { id: "projects", label: "Projects", icon: <Folder size={20} /> },
-                { id: "resume", label: "Resume", icon: <FileText size={20} /> },
-            ];
-
             const scrollY = window.scrollY + window.innerHeight / 3;
 
             for (let i = sections.length - 1; i >= 0; i--) {
@@ -49,24 +50,21 @@ export default function App() {
         }
         window.addEventListener("scroll", onScroll);
         return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+    }, [sections]);
 
-    function scrollToSection(ref) {
-        if (ref.current) {
-            ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    // 点击导航栏，平滑滚动到对应 section
+    function scrollToSection(id) {
+        const section = sections.find(s => s.id === id);
+        if (section?.ref.current) {
+            section.ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
         }
+        setCurrentSection(id);
     }
-
 
     return (
         <>
             <Navbar
-                sections={[
-                    { id: "welcome", label: "Welcome", ref: welcomeRef },
-                    { id: "about", label: "About", ref: aboutRef },
-                    { id: "projects", label: "Projects", ref: projectsRef },
-                    { id: "resume", label: "Resume", ref: resumeRef },
-                ]}
+                sections={sections}
                 currentSection={currentSection}
                 onClickSection={scrollToSection}
                 onSetCurrentSection={setCurrentSection}
@@ -95,7 +93,6 @@ export default function App() {
                         <motion.img
                             initial={{ x: -100, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
-                            
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             src="/your-photo.jpg"
                             alt="Your Photo"
@@ -105,7 +102,6 @@ export default function App() {
                             <motion.h2
                                 initial={{ y: -50, opacity: 0 }}
                                 whileInView={{ y: 0, opacity: 1 }}
-                                
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                                 className="font-spaceGrotesk text-3xl sm:text-4xl font-semibold mb-4"
                             >
@@ -114,7 +110,6 @@ export default function App() {
                             <motion.p
                                 initial={{ x: 100, opacity: 0 }}
                                 whileInView={{ x: 0, opacity: 1 }}
-                                
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                                 className="text-gray-700 text-base sm:text-lg leading-relaxed whitespace-pre-line font-notoSans"
                             >
@@ -123,8 +118,6 @@ export default function App() {
                         </div>
                     </div>
                 </section>
-
-
 
                 {/* Projects Section */}
                 <section
@@ -135,11 +128,9 @@ export default function App() {
                     <motion.h2
                         initial={{ y: -50, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
-                        
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         className="font-spaceGrotesk text-3xl sm:text-4xl font-semibold mb-8 text-center max-w-7xl mx-auto"
                     >
-
                         Projects
                     </motion.h2>
                     <div className="grid max-w-7xl grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mx-auto md:gap-8">
@@ -162,10 +153,8 @@ export default function App() {
                                 />
                             </motion.div>
                         ))}
-
                     </div>
                 </section>
-
 
                 {/* Resume Section */}
                 <section
@@ -173,12 +162,10 @@ export default function App() {
                     id="resume"
                     className="min-h-screen py-32 px-4 sm:px-6 mx-auto bg-indigo-50 flex justify-center gap-8"
                 >
-                    {/* 左侧区域，高度与右侧PDF一致 */}
                     <div className="flex flex-col justify-center items-center w-1/3" style={{ height: "600px" }}>
                         <motion.h2
                             initial={{ y: -50, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
-
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             className="font-spaceGrotesk text-3xl sm:text-4xl font-semibold mb-4"
                         >
@@ -194,27 +181,22 @@ export default function App() {
                         >
                             Download CV
                         </motion.a>
-
-
                     </div>
 
-                    {/* 右侧 PDF */}
                     <div className="2-595px shadow-lg rounded overflow-hidden" style={{ height: "600px" }}>
                         <iframe
                             src="/your-resume.pdf"
                             title="Resume PDF"
                             className="h-full"
                             style={{
-                                width: "595px",         // A4宽度，单位是像素（适合72dpi）
+                                width: "595px",
                                 border: "none",
-                                margin: "0 auto",       // 如果你希望居中展示
-                                display: "block",       // 配合居中
+                                margin: "0 auto",
+                                display: "block",
                             }}
                         />
                     </div>
                 </section>
-
-
             </main>
 
             {/* Overlay for expanded project */}
@@ -226,6 +208,4 @@ export default function App() {
             )}
         </>
     );
-
-
 }
