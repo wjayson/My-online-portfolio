@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Home, User, Folder, FileText } from "lucide-react";
+import { Home, User, Folder, Mail } from "lucide-react";
 
 export default function Navbar({ sections, currentSection, onClickSection }) {
     const containerRef = useRef(null);
@@ -25,7 +25,7 @@ export default function Navbar({ sections, currentSection, onClickSection }) {
         welcome: <Home size={18} />,
         about: <User size={18} />,
         projects: <Folder size={18} />,
-        resume: <FileText size={18} />,
+        resume: <Mail size={18} />,
     };
 
     return (

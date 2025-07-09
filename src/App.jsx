@@ -20,7 +20,7 @@ export default function App() {
         { id: "welcome", label: "Welcome", icon: <Home size={20} />, ref: welcomeRef },
         { id: "about", label: "About", icon: <User size={20} />, ref: aboutRef },
         { id: "projects", label: "Projects", icon: <Folder size={20} />, ref: projectsRef },
-        { id: "resume", label: "Resume", icon: <FileText size={20} />, ref: resumeRef },
+        { id: "resume", label: "Contacts", icon: <FileText size={20} />, ref: resumeRef },
     ];
 
     // 禁止滚动 useEffect
@@ -160,43 +160,54 @@ export default function App() {
                 <section
                     ref={resumeRef}
                     id="resume"
-                    className="min-h-screen py-32 px-4 sm:px-6 mx-auto bg-indigo-50 flex justify-center gap-8"
+                    className="min-h-screen bg-indigo-50 flex flex-col items-center justify-center relative px-4 sm:px-6 pt-32"
                 >
-                    <div className="flex flex-col justify-center items-center w-1/3" style={{ height: "600px" }}>
+                    {/* 左右两块水平排列的容器 */}
+                    <div className="flex items-center justify-center gap-16 w-full max-w-5xl">
                         <motion.h2
                             initial={{ y: -50, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="font-spaceGrotesk text-3xl sm:text-4xl font-semibold mb-4"
+                            className="font-spaceGrotesk text-3xl sm:text-4xl font-semibold w-1/3 text-left"
+                            style={{ lineHeight: 1 }}
                         >
-                            My resume
+                            My Contacts
                         </motion.h2>
-                        <motion.a
-                            href="/your-resume.pdf"
-                            download="My_Resume.pdf"
-                            className="mt-6 inline-block px-6 py-3 bg-indigo-600 text-white rounded shadow hover:bg-indigo-700 transition font-dmSans"
-                            initial={{ y: 50, opacity: 0 }}
-                            whileInView={{ y: 0, opacity: 1 }}
+
+                        <motion.p
+                            initial={{ x: 100, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
+                            className="text-gray-700 text-base sm:text-lg font-notoSans w-1/3 flex items-center justify-end"
+                            style={{ lineHeight: 1 }}
                         >
-                            Download CV
-                        </motion.a>
+                            <strong className="text-gray-900 mr-2">Email:</strong> Wjayson@outlook.com
+                        </motion.p>
                     </div>
 
-                    <div className="2-595px shadow-lg rounded overflow-hidden" style={{ height: "600px" }}>
-                        <iframe
-                            src="/your-resume.pdf"
-                            title="Resume PDF"
-                            className="h-full"
-                            style={{
-                                width: "595px",
-                                border: "none",
-                                margin: "0 auto",
-                                display: "block",
-                            }}
+                    {/* 图片正下方居中 */}
+                    <motion.div
+                        initial={{ y: 100, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="mt-16 mx-auto w-[224px] flex flex-col items-center"
+                    >
+                        <img
+                            src="/7.jpg"
+                            alt="👆 My dog 👆"
+                            className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full object-cover shadow-lg"
                         />
-                    </div>
+                        <p className="mt-4 text-center text-gray-700 font-notoSans text-base sm:text-lg">
+                            👆 My dog 👆
+                        </p>
+                    </motion.div>
                 </section>
+
+
+
+
+
+
             </main>
 
             {/* Overlay for expanded project */}
