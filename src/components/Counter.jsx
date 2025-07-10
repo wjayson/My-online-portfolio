@@ -24,7 +24,7 @@ const LastUpdated = () => {
                         updated[idx] = true;
                         return updated;
                     });
-                }, idx * 50); // 每位延迟 300ms
+                }, idx * 50); // 每位延迟 50ms
             });
         }
     }, [inView]);
@@ -32,7 +32,7 @@ const LastUpdated = () => {
     return (
         <div
             ref={ref}
-            className="text-xl font-mono flex items-center gap-1"
+            className="text-base sm:text-xl font-mono flex items-center gap-1 mt-4"
         >
             <span>🛠️ Last updated:</span>
             {digits.map((digit, idx) =>
@@ -41,8 +41,8 @@ const LastUpdated = () => {
                 ) : (
                     <FlipNumbers
                         key={idx}
-                        height={30}
-                        width={20}
+                        height={24}
+                        width={16}
                         color="#333"
                         background="indigo-100"
                         play={playStates[idx]}

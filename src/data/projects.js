@@ -4,12 +4,13 @@ const projects = [
         id: 1,
         title: "Personal Website",
         media: [
-            { type: "image", src: "/images/project1.jpg" },
+            { type: "image", src: "/images/project1-1.jpg" },
             { type: "image", src: "/images/project1-2.jpg" },
             { type: "video", src: "/videos/demo1.mp4" },
         ],
         image: "/images/project1.jpg",
         description: "A clean, responsive personal portfolio website built with React and Tailwind CSS.",
+        fullDescription: "Hi",
     },    {
         id: 2,
         title: "Personal Website",
@@ -20,6 +21,7 @@ const projects = [
         ],
         image: "/images/project2.jpg",
         description: "A clean, responsive personal portfolio website built with React and Tailwind CSS.",
+        fullDescription: "Hi",
     },    {
         id: 3,
         title: "Personal Website",
@@ -30,6 +32,7 @@ const projects = [
         ],
         image: "/images/project3.jpg",
         description: "A clean, responsive personal portfolio website built with React and Tailwind CSS.",
+        fullDescription: "Hi",
     },    {
         id: 4,
         title: "Personal Website",
@@ -40,6 +43,7 @@ const projects = [
         ],
         image: "/images/project4.jpg",
         description: "A clean, responsive personal portfolio website built with React and Tailwind CSS.",
+        fullDescription: "Hi",
     },    {
         id: 5,
         title: "Personal Website",
@@ -50,6 +54,7 @@ const projects = [
         ],
         image: "/images/project5.jpg",
         description: "A clean, responsive personal portfolio website built with React and Tailwind CSS.",
+        fullDescription: "Hi",
     },    {
         id: 6,
         title: "Personal Website",
@@ -60,6 +65,7 @@ const projects = [
         ],
         image: "/images/project6.jpg",
         description: "A clean, responsive personal portfolio website built with React and Tailwind CSS.",
+        fullDescription: "Hi",
     },
 ];
 

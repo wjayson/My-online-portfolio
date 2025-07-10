@@ -18,6 +18,14 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+html {
+  overflow-y: scroll; /* 永远保留滚动条，防止宽度跳动 */
+}
+
+html.no-scroll {
+  overflow: hidden; /* 锁定滚动 */
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

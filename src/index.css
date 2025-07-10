@@ -6,6 +6,19 @@ html, body, #root {
     margin: 0;
     padding: 0;
     width: 100%;
+    overflow-x: hidden; /* 防止横向滚动 */
+}
+
+/* 确保所有媒体元素不超出容器 */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 防止长文本撑开容器 */
+* {
+    word-break: break-word;
+    box-sizing: border-box;
 }
 
 /* DM Sans */
